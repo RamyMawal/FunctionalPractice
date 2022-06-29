@@ -12,8 +12,8 @@ namespace FunctionalPractice
             {
                 Console.WriteLine($"Id: {order.Id}");
                 Console.WriteLine($"Price: {order.Price}");
-                Console.WriteLine($"Price: {order.AlmostExpired}");
-                Console.WriteLine($"Price: {order.Type}");
+                Console.WriteLine($"Almost Expired: {order.AlmostExpired}");
+                Console.WriteLine($"Type: {order.Type}");
 
             }
             Console.ReadLine();
@@ -41,10 +41,13 @@ namespace FunctionalPractice
         {
             var Rules = GetRules();
 
-            decimal discount = Rules
+            var discountList = Rules
                 .Where((r) => r.QualifyingCondition(order))
                 .Select(r => r.GetDiscount(order))
-                .OrderBy(o => o)
+                .OrderBy(o => o);
+
+            decimal discount = discountList.Count() == 0 ? 0 :
+                discountList
                 .Take(3)
                 .Average();
 

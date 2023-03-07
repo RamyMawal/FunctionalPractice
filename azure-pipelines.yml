@@ -1,21 +1,7 @@
 # ASP.NET
-- task: DotNetCoreCLI@2
-  inputs:
-    command: 'test'
 # Build and test ASP.NET projects.
 # Add steps that publish symbols, save build artifacts, deploy, and more:
 # https://docs.microsoft.com/azure/devops/pipelines/apps/aspnet/build-aspnet-4
-
-trigger:
-- master
-
-pool:
-  vmImage: 'windows-latest'
-
-variables:
-  solution: '**/*.sln'
-  buildPlatform: 'Any CPU'
-  buildConfiguration: 'Release'
 
 trigger:
 - master
